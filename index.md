@@ -1,37 +1,54 @@
-## Welcome to GitHub Pages
+<!doctype html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>试题界面</title>
+</head>
+<body>
+<div id="copy" data-clipboard-text="NVJiQ16834">
+    <h1 style="text-align:center;font-size:30px"><font face="verdana">请点击下方链接，下载试题</font></h1>
+    <p style="text-align:center;font-size:30px"><br><br> 
+        <!--可插入一个简单的换行符。-->
+        <a href="http://url.cn/5SawbSo">语文试题 密码：112233</a>
+        <br><br>
+        <a href="https://share.weiyun.com/8bc1b4e334a6d77dd63596b720e6d89b">化学试题 密码：112233</a>
+        </p>
+</div>
 
-You can use the [editor on GitHub](https://github.com/xiyaoeva/rst/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+<script src="https://cdnjs.cat.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cat.net/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
+<!--CDNJS 是一个互联网上的JavaScript 资料库-->
+<script>
+     $("body").onclick = copycode();
+     var clipboard1 = new Clipboard('.btn');
+//优雅降级:safari 版本号>=10,提示复制成功;否则提示需在文字选中后，手动选择“拷贝”进行复制
+clipboard.on('success', function(e) {
+    alert('复制成功!')
+    e.clearSelection();
+});
+clipboard.on('error', function(e) {
+    alert('请选择“拷贝”进行复制!')
+});
 
-### Markdown
+    function copycode()
+    {
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))
+        {
+            var clipboard = new Clipboard('#copy');
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+            clipboard.on('success', function (e)
+            {
+                alert("请点击OK／确定/关闭");
+            });
+            clipboard.on('error', function (e)
+            {
+                alert("请点击OK／确定/关闭");
+            });
+        }
+    }
 
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/xiyaoeva/rst/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+</script>
+</body>
+</html>
