@@ -1,47 +1,55 @@
 <!DOCTYPE html>
-<html lang="zh_CN">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <script type="text/javascript" src="http://libs.useso.com/js/jquery/1.9.0/jquery.min.js"></script>
-    <title>点击下载应用</title>
-    <style type="text/css">
-    *{margin:0; padding:0;}
-    a{text-decoration: none;}
-    img{max-width: 100%; height: auto;}
-    .weixin-tip{display: none; position: fixed; left:0; top:0; bottom:0; background: rgba(0,0,0,0.8); filter:alpha(opacity=80);  height: 100%; width: 100%; z-index: 100;}
-    .weixin-tip p{text-align: center; margin-top: 10%; padding:0 5%;}
-    </style>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<title>微信弹出遮罩</title>
 </head>
 <body>
-    <div class="weixin-tip">
-        <p>
-            <img src="images/live_weixin.png" alt="微信打开"/>
-        </p>
-        <p style="text-align:center;font-size:30px"><br><br> 
-        <!--可插入一个简单的换行符。-->
-        <a href="http://url.cn/5SawbSo">语文试题 密码：112233</a>
-        <br><br>
-        <a href="https://share.weiyun.com/8bc1b4e334a6d77dd63596b720e6d89b">化学试题 密码：112233</a>
-        </p>
-    </div>
-    <script type="text/javascript">
-        /*$(window).on("load",function(){
-            var winHeight = $(window).height();
-            function is_weixin() {
-                var ua = navigator.userAgent.toLowerCase();
-                if (ua.match(/MicroMessenger/i) == "micromessenger") {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-            var isWeixin = is_weixin();
-            if(isWeixin){
-                $(".weixin-tip").css("height",winHeight);
-                $(".weixin-tip").show();
-            }
-        })*/
-    </script>
+	<style type="text/css">
+	*{margin:0; padding:0;}
+	img{max-width: 100%; height: auto;}
+	.test{height: 600px; max-width: 600px; font-size: 40px;}
+	</style>
+	<div class="test">
+		这个就是你打开浏览器后看到的内容了。如果你是用微信打开的话，会弹出一个提示，要求你在浏览器中打开。打开之后你就可以看到这些内容改了。
+	</div>
+	<script type="text/javascript">
+		function is_weixin() {
+		    var ua = navigator.userAgent.toLowerCase();
+		    if (ua.match(/MicroMessenger/i) == "micromessenger") {
+		        return true;
+		    } else {
+		        return false;
+		    }
+		}
+		var isWeixin = is_weixin();
+		var winHeight = typeof window.innerHeight != 'undefined' ? window.innerHeight : document.documentElement.clientHeight;
+		console.log(winHeight);
+		function loadHtml(){
+			var div = document.createElement('div');
+			div.id = 'weixin-tip';
+			div.innerHTML = '<p><img src="images/live_weixin.png" alt="微信打开"/></p>';
+			document.body.appendChild(div);
+		}
+		
+		function loadStyleText(cssText) {
+	        var style = document.createElement('style');
+	        style.rel = 'stylesheet';
+	        style.type = 'text/css';
+	        try {
+	            style.appendChild(document.createTextNode(cssText));
+	        } catch (e) {
+	            style.styleSheet.cssText = cssText; //ie9以下
+	        }
+            var head=document.getElementsByTagName("head")[0]; //head标签之间加上style样式
+            head.appendChild(style); 
+	    }
+	    var cssText = "#weixin-tip{position: fixed; left:0; top:0; background: rgba(0,0,0,0.8); filter:alpha(opacity=80); width: 100%; height:100%; z-index: 100;} #weixin-tip p{text-align: center; margin-top: 10%; padding:0 5%;}";
+		if(isWeixin){
+			loadHtml();
+			loadStyleText(cssText);
+		}
+	</script>
 </body>
 </html>
